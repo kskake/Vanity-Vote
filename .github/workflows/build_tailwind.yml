@@ -1,0 +1,44 @@
+name: Build Tailwind CSS
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'dist/output.css'
+
+jobs:
+  build-tailwind:
+    runs-on: ubuntu-latest
+    
+    # Skip if the commit was made by GitHub Actions bot
+    if: "!contains(github.event.head_commit.message, 'chore: auto-generate') && github.actor != 'github-actions[bot]'"
+    
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Build Tailwind CSS
+        run: |
+          echo "Building Tailwind CSS..."
+          npx tailwindcss@3 -i ./src/input.css -o ./dist/output.css --minify
+          echo "Tailwind CSS build completed successfully!"
+      
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: auto-generate Tailwind CSS output file"
+          file_pattern: "dist/output.css"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
