@@ -11,6 +11,11 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Custom Tailwind Configuration -->
     <script>
         tailwind.config = {
@@ -27,6 +32,15 @@
     </script>
     
     <style>
+        /* Apply Google Fonts */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        
         /* Custom styles for masonry layout and animations */
         .masonry-grid {
             column-gap: 1.5rem;
@@ -85,8 +99,12 @@
         
         .emoji-btn.selected {
             opacity: 1;
-            transform: scale(1.4);
+            transform: scale(1.25);
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+        
+        .emoji-btn.faded {
+            opacity: 0.5;
         }
         
         .emoji-btn:active {
@@ -101,7 +119,7 @@
             <div class="flex items-center justify-between">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <h1 class="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-vanity-pink-dark to-vanity-pink">
+                    <h1 class="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-vanity-pink-dark to-vanity-pink" style="font-family: 'Playfair Display', serif;">
                         <i class="fas fa-heart mr-2"></i>Vanity Vote
                     </h1>
                 </div>
@@ -392,6 +410,68 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Product Card 9 -->
+            <div class="masonry-item">
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md" data-product-id="product-9">
+                    <div class="relative">
+                        <img 
+                            src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=550&fit=crop" 
+                            alt="Designer Sneakers" 
+                            class="w-full h-auto object-cover"
+                        >
+                        <div class="absolute top-3 right-3 bg-vanity-pink text-white px-2 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-fire"></i> Hot
+                        </div>
+                    </div>
+                    <div class="rating-bar">
+                        <button class="emoji-btn" data-emoji="1" title="Terrible">🤮</button>
+                        <button class="emoji-btn" data-emoji="2" title="Meh">😐</button>
+                        <button class="emoji-btn" data-emoji="3" title="Good">🙂</button>
+                        <button class="emoji-btn" data-emoji="4" title="Love it">😍</button>
+                        <button class="emoji-btn" data-emoji="5" title="Fire">🔥</button>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Urban Style</p>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Limited Edition Sneakers</h3>
+                        <p class="text-sm text-gray-600 mb-3">Comfort meets streetwear fashion</p>
+                        <button class="w-full bg-black text-white py-2 rounded-lg font-semibold hover:bg-gray-800 transition">
+                            <i class="fas fa-shopping-cart mr-2"></i>Buy Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 10 -->
+            <div class="masonry-item">
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md" data-product-id="product-10">
+                    <div class="relative">
+                        <img 
+                            src="https://images.unsplash.com/photo-1583292650898-7d22cd27ca6f?w=400&h=620&fit=crop" 
+                            alt="Luxury Watch" 
+                            class="w-full h-auto object-cover"
+                        >
+                        <div class="absolute top-3 right-3 bg-vanity-pink text-white px-2 py-1 rounded-full text-xs font-semibold">
+                            Premium
+                        </div>
+                    </div>
+                    <div class="rating-bar">
+                        <button class="emoji-btn" data-emoji="1" title="Terrible">🤮</button>
+                        <button class="emoji-btn" data-emoji="2" title="Meh">😐</button>
+                        <button class="emoji-btn" data-emoji="3" title="Good">🙂</button>
+                        <button class="emoji-btn" data-emoji="4" title="Love it">😍</button>
+                        <button class="emoji-btn" data-emoji="5" title="Fire">🔥</button>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Timeless Luxury</p>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Rose Gold Classic Watch</h3>
+                        <p class="text-sm text-gray-600 mb-3">Elegance on your wrist</p>
+                        <button class="w-full bg-black text-white py-2 rounded-lg font-semibold hover:bg-gray-800 transition">
+                            <i class="fas fa-shopping-cart mr-2"></i>Buy Now
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -422,68 +502,34 @@
         </div>
     </footer>
 
-    <!-- Firebase SDK v9 (modular) -->
-    <script type="module">
-        // Import Firebase SDK modules
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
-        import { getFirestore, doc, updateDoc, increment } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
-
-        // Firebase configuration - Replace with your actual credentials
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // Function to cast a vote
-        async function castVote(productId, emojiIndex) {
-            // Check if user has already voted for this product
-            const voteKey = `voted_${productId}`;
-            const previousVote = localStorage.getItem(voteKey);
+    <!-- Voting functionality script -->
+    <script>
+        // Function to handle voting
+        function vote(productId, rating) {
+            console.log(`Vote submitted for ${productId}: Rating ${rating}`);
             
-            if (previousVote) {
-                alert('You have already voted for this product.');
-                return;
-            }
-
-            try {
-                // Update Firestore
-                const productRef = doc(db, 'products', productId);
-                const voteField = `votes.emoji_${emojiIndex}`;
-                
-                await updateDoc(productRef, {
-                    [voteField]: increment(1)
-                });
-
-                // Store vote in localStorage to prevent double voting
-                localStorage.setItem(voteKey, emojiIndex);
-
-                // Optimistic UI update
-                const productCard = document.querySelector(`[data-product-id="${productId}"]`);
-                const emojiButtons = productCard.querySelectorAll('.emoji-btn');
-                
-                // Remove previous selections
-                emojiButtons.forEach(btn => btn.classList.remove('selected'));
-                
-                // Mark the clicked emoji as selected
-                const clickedButton = productCard.querySelector(`[data-emoji="${emojiIndex}"]`);
-                clickedButton.classList.add('selected');
-
-                console.log(`Vote cast for ${productId}: emoji ${emojiIndex}`);
-            } catch (error) {
-                console.error('Error casting vote:', error);
-                alert('Unable to submit your vote. Please try again later.');
-            }
+            // Visual feedback: scale up selected emoji and fade out others
+            const productCard = document.querySelector(`[data-product-id="${productId}"]`);
+            const emojiButtons = productCard.querySelectorAll('.emoji-btn');
+            
+            // Remove previous selections and faded states
+            emojiButtons.forEach(btn => {
+                btn.classList.remove('selected', 'faded');
+            });
+            
+            // Mark the clicked emoji as selected
+            const clickedButton = productCard.querySelector(`[data-emoji="${rating}"]`);
+            clickedButton.classList.add('selected');
+            
+            // Fade out the other emojis
+            emojiButtons.forEach(btn => {
+                if (btn !== clickedButton) {
+                    btn.classList.add('faded');
+                }
+            });
         }
 
-        // Initialize voting functionality
+        // Initialize voting functionality when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             // Attach click handlers to all emoji buttons
             const emojiButtons = document.querySelectorAll('.emoji-btn');
@@ -494,24 +540,10 @@
                     
                     const productCard = this.closest('.product-card');
                     const productId = productCard.getAttribute('data-product-id');
-                    const emojiIndex = this.getAttribute('data-emoji');
+                    const rating = this.getAttribute('data-emoji');
                     
-                    castVote(productId, emojiIndex);
+                    vote(productId, rating);
                 });
-            });
-
-            // Restore previous votes from localStorage on page load
-            document.querySelectorAll('.product-card').forEach(productCard => {
-                const productId = productCard.getAttribute('data-product-id');
-                const voteKey = `voted_${productId}`;
-                const previousVote = localStorage.getItem(voteKey);
-                
-                if (previousVote) {
-                    const emojiButton = productCard.querySelector(`[data-emoji="${previousVote}"]`);
-                    if (emojiButton) {
-                        emojiButton.classList.add('selected');
-                    }
-                }
             });
         });
     </script>
