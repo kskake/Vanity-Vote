@@ -449,7 +449,7 @@
             const previousVote = localStorage.getItem(voteKey);
             
             if (previousVote) {
-                alert('You have already voted for this product!');
+                alert('You have already voted for this product.');
                 return;
             }
 
@@ -479,7 +479,7 @@
                 console.log(`Vote cast for ${productId}: emoji ${emojiIndex}`);
             } catch (error) {
                 console.error('Error casting vote:', error);
-                alert('Failed to cast vote. Please check your Firebase configuration.');
+                alert('Unable to submit your vote. Please try again later.');
             }
         }
 
